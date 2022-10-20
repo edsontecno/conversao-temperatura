@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: conversao
 spec:
-  replicas: 5
+  replicas: 2
   selector:
     matchLabels:
       app: web
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: edsontecno/conversao-temperatura:v1
+        image: edsontecno/conversao-temperatura:{{TAG}}
         ports:
         - containerPort: 80
 ---
@@ -30,5 +30,4 @@ spec:
     - port: 80 
       targetPort: 8080 
       protocol: TCP
-      nodePort: 30000
-  type: NodePort          
+  type: LoadBalancer          
